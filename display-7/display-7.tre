@@ -1,0 +1,16 @@
+ÀÄdisplay-7
+   ÀÄMAIN  0/27  Ram=1
+      ÃÄ@cinit1  (Inline)  Ram=0
+      ÃÄinitPins  0/18  Ram=0
+      ÃÄcontador  0/113  Ram=1
+      ³  ÃÄcero  (Inline)  Ram=0
+      ³  ÃÄuno  (Inline)  Ram=0
+      ³  ÃÄdos  (Inline)  Ram=0
+      ³  ÃÄtres  (Inline)  Ram=0
+      ³  ÃÄcuatro  (Inline)  Ram=0
+      ³  ÃÄcinco  (Inline)  Ram=0
+      ³  ÃÄseis  (Inline)  Ram=0
+      ³  ÃÄsiete  (Inline)  Ram=0
+      ³  ÃÄocho  (Inline)  Ram=0
+      ³  ÀÄnueve  (Inline)  Ram=0
+      ÀÄ@delay_ms1  0/21  Ram=1

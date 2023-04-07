@@ -1,0 +1,32 @@
+#include <contador binario.h>
+
+#FUSES NOWDT      // Es un fuse que resetea el pic si este se cuelga.
+
+void initPins(){
+   bit_set(TRISB, 0);
+   bit_clear(TRISB, 1);
+   bit_clear(TRISB, 2);
+   bit_clear(TRISB, 3);
+   bit_clear(TRISB, 4);
+   
+   bit_clear(PORTB, 1);
+   bit_clear(PORTB, 2);
+   bit_clear(PORTB, 3);
+   bit_clear(PORTB, 4);
+}
+
+void main()
+{
+   initPins();
+   while(TRUE)
+   {
+      for(int i = 0; i < 16; i++){
+         switch(i){
+         case 0:
+            break;
+         default:
+            break;
+         }
+      }
+   }
+}

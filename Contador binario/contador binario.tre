@@ -1,0 +1,6 @@
+ÀÄcontador binario
+   ÀÄMAIN  0/27  Ram=1
+      ÃÄ@cinit1  (Inline)  Ram=0
+      ÃÄinitPins  0/12  Ram=0
+      ÃÄcontador  0/131  Ram=1
+      ÀÄ@delay_ms1  0/21  Ram=1

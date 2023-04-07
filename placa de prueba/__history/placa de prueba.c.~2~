@@ -1,0 +1,14 @@
+#include <placa de prueba.h>
+
+#byte TRISB = 0x86
+#byte PORTB = 0x06
+
+void main()
+{
+
+   while(TRUE)
+   {
+      //TODO: User Code
+   }
+
+}

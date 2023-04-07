@@ -1,0 +1,52 @@
+[PROJECT]
+Target=contador binario.hex
+Processor_Text=PIC16F628A
+CCSVerions=5.025
+Compiler=PCM
+CCSVersion=5.025
+[Target Data]
+FileList=contador binario.c
+[Directories]
+Include=
+[C:\Users\aviel\OneDrive\Documentos\PIC\Contador binario\contador binario]
+Type=4
+[mru-list]
+1=contador binario.c
+
+[ProjectLog]
+Days=2
+D1=01-04-2023
+D1_L=15
+D1_L1=[63911]Project Opened.
+D1_L2=[64035]Started Editing.
+D1_L3=[64668]Stopped Editing.
+TotalEdit=15
+TotalDebug=0
+D1_E=15
+D1_D=0
+D1_L4=[64668]Project Closed.
+D1_L5=[64668]Project Opened.
+D1_L6=[64692]Started Editing.
+D1_L7=[65800]Project Closed.
+D1_L8=[65804]Project Opened.
+D1_L9=[65831]Started Editing.
+D1_L10=[66198]Stopped Editing.
+D1_L11=[66878]Started Editing.
+D1_L12=[67305]Stopped Editing.
+D1_L13=[71187]Started Editing.
+D1_L14=[71488]Stopped Editing.
+D1_L15=[73986]Project Closed.
+D2=02-04-2023
+D2_L=2
+D2_L1=[52868]Project Opened.
+D2_L2=[52955]Project Closed.
+
+[Opened Files]
+1=contador binario.c
+2=
+3=
+[contador binario.c]
+Type=4
+[Units]
+Count=1
+1=contador binario (main)

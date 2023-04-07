@@ -1,0 +1,612 @@
+CCS PCM C Compiler, Version 5.025, 54977               04-abr.-23 15:22
+
+               Filename:   C:\Users\aviel\OneDrive\Documentos\PIC\teclado matricial\teclado matricial.lst
+
+               ROM used:   363 words (18%)
+                           Largest free fragment is 1685
+               RAM used:   6 (3%) at main() level
+                           7 (3%) worst case
+               Stack used: 1 locations
+               Stack size: 8
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   0B7
+0003:  NOP
+.................... #include <teclado matricial.h> 
+.................... #include <16F628A.h> 
+.................... //////////// Standard Header file for the PIC16F628A device //////////////// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996, 2013 Custom Computer Services          //// 
+.................... //// This source code may only be used by licensed users of the CCS C  //// 
+.................... //// compiler.  This source code may only be distributed to other      //// 
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction //// 
+.................... //// or distribution is permitted without written permission.          //// 
+.................... //// Derivative programs created using this software in object code    //// 
+.................... //// form are not restricted in any way.                               //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... #device PIC16F628A 
+....................  
+.................... #list 
+....................  
+....................  
+.................... #FUSES NOWDT      // Es un fuse que resetea el pic si este se cuelga. 
+.................... #FUSES NOPROTECT  // Permite o bloque lectura del pic con un  programador 
+.................... #FUSES NOLVP      // Anula pin de programacion RB4 y lo deja como I/O 
+.................... #FUSES NOMCLR     // NOMCLR = PIN RA5 Input. MCLR=PIN RA5 como reset    
+....................  
+.................... #FUSES INTRC_IO            // HABILITA el OSCILADOR INTERNO  
+.................... #USE DELAY(clock = 4000000, INTERNAL) // COMPLEMENTA EL FUSE INTRC_IO 
+*
+00A2:  MOVLW  22
+00A3:  MOVWF  04
+00A4:  BCF    03.7
+00A5:  MOVF   00,W
+00A6:  BTFSC  03.2
+00A7:  GOTO   0B6
+00A8:  MOVLW  01
+00A9:  MOVWF  78
+00AA:  CLRF   77
+00AB:  DECFSZ 77,F
+00AC:  GOTO   0AB
+00AD:  DECFSZ 78,F
+00AE:  GOTO   0AA
+00AF:  MOVLW  4A
+00B0:  MOVWF  77
+00B1:  DECFSZ 77,F
+00B2:  GOTO   0B1
+00B3:  GOTO   0B4
+00B4:  DECFSZ 00,F
+00B5:  GOTO   0A8
+00B6:  RETURN
+....................  
+.................... #byte TRISA = 0x85 
+.................... #byte PORTA = 0x05 
+....................  
+.................... #byte TRISB = 0x86 
+.................... #byte PORTB = 0x06 
+....................  
+....................  
+.................... void initPins() { 
+....................    bit_clear(TRISA, 0); 
+*
+0004:  BSF    03.5
+0005:  BCF    05.0
+....................    bit_clear(TRISA, 1); 
+0006:  BCF    05.1
+....................    bit_clear(TRISA, 2); 
+0007:  BCF    05.2
+....................    bit_clear(TRISA, 3); 
+0008:  BCF    05.3
+....................  
+....................    bit_clear(PORTA, 0); 
+0009:  BCF    03.5
+000A:  BCF    05.0
+....................    bit_clear(PORTA, 1); 
+000B:  BCF    05.1
+....................    bit_clear(PORTA, 2); 
+000C:  BCF    05.2
+....................    bit_clear(PORTA, 3); 
+000D:  BCF    05.3
+....................  
+....................    bit_clear(TRISB, 0); 
+000E:  BSF    03.5
+000F:  BCF    06.0
+....................    bit_clear(TRISB, 1); 
+0010:  BCF    06.1
+....................    bit_clear(TRISB, 2); 
+0011:  BCF    06.2
+....................    bit_clear(TRISB, 3); 
+0012:  BCF    06.3
+....................  
+....................    bit_clear(PORTB, 0); 
+0013:  BCF    03.5
+0014:  BCF    06.0
+....................    bit_clear(PORTB, 1); 
+0015:  BCF    06.1
+....................    bit_clear(PORTB, 2); 
+0016:  BCF    06.2
+....................    bit_clear(PORTB, 3); 
+0017:  BCF    06.3
+....................  
+....................    bit_set(TRISB, 4); 
+0018:  BSF    03.5
+0019:  BSF    06.4
+....................    bit_set(TRISB, 5); 
+001A:  BSF    06.5
+....................    bit_set(TRISB, 6); 
+001B:  BSF    06.6
+....................    bit_set(TRISB, 7); 
+001C:  BSF    06.7
+001D:  BCF    03.5
+001E:  GOTO   0C1 (RETURN)
+.................... } 
+....................  
+.................... void contador(int i) { 
+....................     switch (i) { 
+001F:  MOVF   22,W
+0020:  XORLW  00
+0021:  BTFSC  03.2
+0022:  GOTO   051
+0023:  XORLW  01
+0024:  BTFSC  03.2
+0025:  GOTO   056
+0026:  XORLW  03
+0027:  BTFSC  03.2
+0028:  GOTO   05B
+0029:  XORLW  01
+002A:  BTFSC  03.2
+002B:  GOTO   060
+002C:  XORLW  07
+002D:  BTFSC  03.2
+002E:  GOTO   065
+002F:  XORLW  01
+0030:  BTFSC  03.2
+0031:  GOTO   06A
+0032:  XORLW  03
+0033:  BTFSC  03.2
+0034:  GOTO   06F
+0035:  XORLW  01
+0036:  BTFSC  03.2
+0037:  GOTO   074
+0038:  XORLW  0F
+0039:  BTFSC  03.2
+003A:  GOTO   079
+003B:  XORLW  01
+003C:  BTFSC  03.2
+003D:  GOTO   07E
+003E:  XORLW  03
+003F:  BTFSC  03.2
+0040:  GOTO   083
+0041:  XORLW  01
+0042:  BTFSC  03.2
+0043:  GOTO   088
+0044:  XORLW  07
+0045:  BTFSC  03.2
+0046:  GOTO   08D
+0047:  XORLW  01
+0048:  BTFSC  03.2
+0049:  GOTO   092
+004A:  XORLW  03
+004B:  BTFSC  03.2
+004C:  GOTO   097
+004D:  XORLW  01
+004E:  BTFSC  03.2
+004F:  GOTO   09C
+0050:  GOTO   0A1
+....................     case 0: 
+....................         bit_clear(PORTA, 0); 
+0051:  BCF    05.0
+....................         bit_clear(PORTA, 1); 
+0052:  BCF    05.1
+....................         bit_clear(PORTA, 2); 
+0053:  BCF    05.2
+....................         bit_clear(PORTA, 3); 
+0054:  BCF    05.3
+....................         break; 
+0055:  GOTO   0A1
+....................  
+....................     case 1: 
+....................         bit_set(PORTA, 0); 
+0056:  BSF    05.0
+....................         bit_clear(PORTA, 1); 
+0057:  BCF    05.1
+....................         bit_clear(PORTA, 2); 
+0058:  BCF    05.2
+....................         bit_clear(PORTA, 3); 
+0059:  BCF    05.3
+....................         break; 
+005A:  GOTO   0A1
+....................  
+....................     case 2: 
+....................         bit_clear(PORTA, 0); 
+005B:  BCF    05.0
+....................         bit_set(PORTA, 1); 
+005C:  BSF    05.1
+....................         bit_clear(PORTA, 2); 
+005D:  BCF    05.2
+....................         bit_clear(PORTA, 3); 
+005E:  BCF    05.3
+....................         break; 
+005F:  GOTO   0A1
+....................  
+....................     case 3: 
+....................         bit_set(PORTA, 0); 
+0060:  BSF    05.0
+....................         bit_set(PORTA, 1); 
+0061:  BSF    05.1
+....................         bit_clear(PORTA, 2); 
+0062:  BCF    05.2
+....................         bit_clear(PORTA, 3); 
+0063:  BCF    05.3
+....................         break; 
+0064:  GOTO   0A1
+....................  
+....................     case 4: 
+....................         bit_clear(PORTA, 0); 
+0065:  BCF    05.0
+....................         bit_clear(PORTA, 1); 
+0066:  BCF    05.1
+....................         bit_set(PORTA, 2); 
+0067:  BSF    05.2
+....................         bit_clear(PORTA, 3); 
+0068:  BCF    05.3
+....................         break; 
+0069:  GOTO   0A1
+....................  
+....................     case 5: 
+....................         bit_set(PORTA, 0); 
+006A:  BSF    05.0
+....................         bit_clear(PORTA, 1); 
+006B:  BCF    05.1
+....................         bit_set(PORTA, 2); 
+006C:  BSF    05.2
+....................         bit_clear(PORTA, 3); 
+006D:  BCF    05.3
+....................         break; 
+006E:  GOTO   0A1
+....................  
+....................     case 6: 
+....................         bit_clear(PORTA, 0); 
+006F:  BCF    05.0
+....................         bit_set(PORTA, 1); 
+0070:  BSF    05.1
+....................         bit_set(PORTA, 2); 
+0071:  BSF    05.2
+....................         bit_clear(PORTA, 3); 
+0072:  BCF    05.3
+....................         break; 
+0073:  GOTO   0A1
+....................  
+....................     case 7: 
+....................         bit_set(PORTA, 0); 
+0074:  BSF    05.0
+....................         bit_set(PORTA, 1); 
+0075:  BSF    05.1
+....................         bit_set(PORTA, 2); 
+0076:  BSF    05.2
+....................         bit_clear(PORTA, 3); 
+0077:  BCF    05.3
+....................         break; 
+0078:  GOTO   0A1
+....................  
+....................     case 8: 
+....................         bit_clear(PORTA, 0); 
+0079:  BCF    05.0
+....................         bit_clear(PORTA, 1); 
+007A:  BCF    05.1
+....................         bit_clear(PORTA, 2); 
+007B:  BCF    05.2
+....................         bit_set(PORTA, 3); 
+007C:  BSF    05.3
+....................         break; 
+007D:  GOTO   0A1
+....................  
+....................     case 9: 
+....................         bit_set(PORTA, 0); 
+007E:  BSF    05.0
+....................         bit_clear(PORTA, 1); 
+007F:  BCF    05.1
+....................         bit_clear(PORTA, 2); 
+0080:  BCF    05.2
+....................         bit_set(PORTA, 3); 
+0081:  BSF    05.3
+....................         break; 
+0082:  GOTO   0A1
+....................  
+....................     case 10: 
+....................         bit_clear(PORTA, 0); 
+0083:  BCF    05.0
+....................         bit_set(PORTA, 1); 
+0084:  BSF    05.1
+....................         bit_clear(PORTA, 2); 
+0085:  BCF    05.2
+....................         bit_set(PORTA, 3); 
+0086:  BSF    05.3
+....................         break; 
+0087:  GOTO   0A1
+....................  
+....................     case 11: 
+....................         bit_set(PORTA, 0); 
+0088:  BSF    05.0
+....................         bit_set(PORTA, 1); 
+0089:  BSF    05.1
+....................         bit_clear(PORTA, 2); 
+008A:  BCF    05.2
+....................         bit_set(PORTA, 3); 
+008B:  BSF    05.3
+....................         break; 
+008C:  GOTO   0A1
+....................  
+....................     case 12: 
+....................         bit_clear(PORTA, 0); 
+008D:  BCF    05.0
+....................         bit_clear(PORTA, 1); 
+008E:  BCF    05.1
+....................         bit_set(PORTA, 2); 
+008F:  BSF    05.2
+....................         bit_set(PORTA, 3); 
+0090:  BSF    05.3
+....................         break; 
+0091:  GOTO   0A1
+....................  
+....................     case 13: 
+....................         bit_set(PORTA, 0); 
+0092:  BSF    05.0
+....................         bit_clear(PORTA, 1); 
+0093:  BCF    05.1
+....................         bit_set(PORTA, 2); 
+0094:  BSF    05.2
+....................         bit_set(PORTA, 3); 
+0095:  BSF    05.3
+....................         break; 
+0096:  GOTO   0A1
+....................  
+....................     case 14: 
+....................         bit_clear(PORTA, 0); 
+0097:  BCF    05.0
+....................         bit_set(PORTA, 1); 
+0098:  BSF    05.1
+....................         bit_set(PORTA, 2); 
+0099:  BSF    05.2
+....................         bit_set(PORTA, 3); 
+009A:  BSF    05.3
+....................         break; 
+009B:  GOTO   0A1
+....................  
+....................     case 15: 
+....................         bit_set(PORTA, 0); 
+009C:  BSF    05.0
+....................         bit_set(PORTA, 1); 
+009D:  BSF    05.1
+....................         bit_set(PORTA, 2); 
+009E:  BSF    05.2
+....................         bit_set(PORTA, 3); 
+009F:  BSF    05.3
+....................         break; 
+00A0:  GOTO   0A1
+....................     default: 
+....................         break; 
+....................     } 
+00A1:  RETURN
+.................... } 
+....................  
+.................... void main() 
+*
+00B7:  MOVF   03,W
+00B8:  ANDLW  1F
+00B9:  MOVWF  03
+00BA:  BSF    03.5
+00BB:  BSF    0E.3
+00BC:  MOVLW  07
+00BD:  BCF    03.5
+00BE:  MOVWF  1F
+00BF:  BCF    03.7
+.................... { 
+....................    initPins(); 
+00C0:  GOTO   004
+....................    while(TRUE) 
+....................    { 
+....................       for (int i = 0; i < 4; i++) 
+00C1:  CLRF   21
+00C2:  MOVF   21,W
+00C3:  SUBLW  03
+00C4:  BTFSS  03.0
+00C5:  GOTO   169
+....................       { 
+....................          bit_set(PORTB, i); 
+00C6:  MOVLW  01
+00C7:  MOVWF  77
+00C8:  MOVF   21,W
+00C9:  MOVWF  78
+00CA:  BTFSC  03.2
+00CB:  GOTO   0D0
+00CC:  BCF    03.0
+00CD:  RLF    77,F
+00CE:  DECFSZ 78,F
+00CF:  GOTO   0CC
+00D0:  MOVF   77,W
+00D1:  IORWF  06,F
+....................  
+....................          if(bit_test(PORTB, 4) == 1 && bit_test(PORTB, 2)){ 
+00D2:  BTFSS  06.4
+00D3:  GOTO   0DA
+00D4:  BTFSS  06.2
+00D5:  GOTO   0DA
+....................                 contador(1); 
+00D6:  MOVLW  01
+00D7:  MOVWF  22
+00D8:  CALL   01F
+....................          } 
+00D9:  GOTO   11C
+....................          else if (bit_test(PORTB, 5) == 1 && bit_test(PORTB, 2)) { 
+00DA:  BTFSS  06.5
+00DB:  GOTO   0E2
+00DC:  BTFSS  06.2
+00DD:  GOTO   0E2
+....................              contador(2); 
+00DE:  MOVLW  02
+00DF:  MOVWF  22
+00E0:  CALL   01F
+....................          } 
+00E1:  GOTO   11C
+....................          else if (bit_test(PORTB, 6) == 1 && bit_test(PORTB, 2)) { 
+00E2:  BTFSS  06.6
+00E3:  GOTO   0EA
+00E4:  BTFSS  06.2
+00E5:  GOTO   0EA
+....................              contador(3); 
+00E6:  MOVLW  03
+00E7:  MOVWF  22
+00E8:  CALL   01F
+....................          } 
+00E9:  GOTO   11C
+....................          else if (bit_test(PORTB, 4) == 1 && bit_test(PORTB, 1)) { 
+00EA:  BTFSS  06.4
+00EB:  GOTO   0F2
+00EC:  BTFSS  06.1
+00ED:  GOTO   0F2
+....................              contador(4); 
+00EE:  MOVLW  04
+00EF:  MOVWF  22
+00F0:  CALL   01F
+....................          } 
+00F1:  GOTO   11C
+....................          else if (bit_test(PORTB, 5) == 1 && bit_test(PORTB, 1)) { 
+00F2:  BTFSS  06.5
+00F3:  GOTO   0FA
+00F4:  BTFSS  06.1
+00F5:  GOTO   0FA
+....................              contador(5); 
+00F6:  MOVLW  05
+00F7:  MOVWF  22
+00F8:  CALL   01F
+....................          } 
+00F9:  GOTO   11C
+....................          else if (bit_test(PORTB, 6) == 1 && bit_test(PORTB, 1)) { 
+00FA:  BTFSS  06.6
+00FB:  GOTO   102
+00FC:  BTFSS  06.1
+00FD:  GOTO   102
+....................              contador(6); 
+00FE:  MOVLW  06
+00FF:  MOVWF  22
+0100:  CALL   01F
+....................          } 
+0101:  GOTO   11C
+....................          else if (bit_test(PORTB, 4) == 1 && bit_test(PORTB, 0)) { 
+0102:  BTFSS  06.4
+0103:  GOTO   10A
+0104:  BTFSS  06.0
+0105:  GOTO   10A
+....................              contador(7); 
+0106:  MOVLW  07
+0107:  MOVWF  22
+0108:  CALL   01F
+....................          } 
+0109:  GOTO   11C
+....................          else if (bit_test(PORTB, 5) == 1 && bit_test(PORTB, 0)) { 
+010A:  BTFSS  06.5
+010B:  GOTO   112
+010C:  BTFSS  06.0
+010D:  GOTO   112
+....................              contador(8); 
+010E:  MOVLW  08
+010F:  MOVWF  22
+0110:  CALL   01F
+....................          } 
+0111:  GOTO   11C
+....................          else if (bit_test(PORTB, 6) == 1 && bit_test(PORTB, 0)) { 
+0112:  BTFSS  06.6
+0113:  GOTO   11A
+0114:  BTFSS  06.0
+0115:  GOTO   11A
+....................              contador(9); 
+0116:  MOVLW  09
+0117:  MOVWF  22
+0118:  CALL   01F
+....................          } 
+0119:  GOTO   11C
+....................          else { 
+....................              contador(0); 
+011A:  CLRF   22
+011B:  CALL   01F
+....................          } 
+....................  
+....................          while(bit_test(PORTB, 4) == 1 && bit_test(PORTB, i)){} 
+011C:  BTFSS  06.4
+011D:  GOTO   12A
+011E:  MOVF   06,W
+011F:  MOVWF  77
+0120:  MOVF   21,W
+0121:  MOVWF  78
+0122:  BTFSC  03.2
+0123:  GOTO   128
+0124:  BCF    03.0
+0125:  RRF    77,F
+0126:  DECFSZ 78,F
+0127:  GOTO   124
+0128:  BTFSC  77.0
+0129:  GOTO   11C
+....................  
+....................          while (bit_test(PORTB, 5) == 1 && bit_test(PORTB, i)) {} 
+012A:  BTFSS  06.5
+012B:  GOTO   138
+012C:  MOVF   06,W
+012D:  MOVWF  77
+012E:  MOVF   21,W
+012F:  MOVWF  78
+0130:  BTFSC  03.2
+0131:  GOTO   136
+0132:  BCF    03.0
+0133:  RRF    77,F
+0134:  DECFSZ 78,F
+0135:  GOTO   132
+0136:  BTFSC  77.0
+0137:  GOTO   12A
+....................  
+....................          while (bit_test(PORTB, 6) == 1 && bit_test(PORTB, i)) {} 
+0138:  BTFSS  06.6
+0139:  GOTO   146
+013A:  MOVF   06,W
+013B:  MOVWF  77
+013C:  MOVF   21,W
+013D:  MOVWF  78
+013E:  BTFSC  03.2
+013F:  GOTO   144
+0140:  BCF    03.0
+0141:  RRF    77,F
+0142:  DECFSZ 78,F
+0143:  GOTO   140
+0144:  BTFSC  77.0
+0145:  GOTO   138
+....................  
+....................          while (bit_test(PORTB, 7) == 1 && bit_test(PORTB, i)) {} 
+0146:  BTFSS  06.7
+0147:  GOTO   154
+0148:  MOVF   06,W
+0149:  MOVWF  77
+014A:  MOVF   21,W
+014B:  MOVWF  78
+014C:  BTFSC  03.2
+014D:  GOTO   152
+014E:  BCF    03.0
+014F:  RRF    77,F
+0150:  DECFSZ 78,F
+0151:  GOTO   14E
+0152:  BTFSC  77.0
+0153:  GOTO   146
+....................          delay_ms(10); 
+0154:  MOVLW  0A
+0155:  MOVWF  22
+0156:  CALL   0A2
+....................          bit_clear(PORTB, i); 
+0157:  MOVLW  01
+0158:  MOVWF  77
+0159:  MOVF   21,W
+015A:  MOVWF  78
+015B:  BTFSC  03.2
+015C:  GOTO   161
+015D:  BCF    03.0
+015E:  RLF    77,F
+015F:  DECFSZ 78,F
+0160:  GOTO   15D
+0161:  MOVF   77,W
+0162:  XORLW  FF
+0163:  ANDWF  06,F
+....................          delay_ms(10); 
+0164:  MOVLW  0A
+0165:  MOVWF  22
+0166:  CALL   0A2
+0167:  INCF   21,F
+0168:  GOTO   0C2
+....................       } 
+0169:  GOTO   0C1
+....................    } 
+....................  
+.................... } 
+016A:  SLEEP
+
+Configuration Fuses:
+   Word  1: 3F50   NOWDT PUT INTRC_IO NOMCLR BROWNOUT NOLVP NOCPD NOPROTECT

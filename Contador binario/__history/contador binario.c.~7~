@@ -1,0 +1,41 @@
+#include <contador binario.h>
+
+#FUSES NOWDT      // Es un fuse que resetea el pic si este se cuelga.
+#FUSES NOPROTECT  // Permite o bloque lectura del pic con un  programador
+#FUSES NOLVP      // Anula pin de programacion RB4 y lo deja como I/O
+#FUSES NOMCLR     // NOMCLR = PIN RA5 Input. MCLR=PIN RA5 como reset   
+
+#FUSES INTRC_IO            // HABILITA el OSCILADOR INTERNO 
+#USE DELAY(clock = 4000000, INTERNAL) // COMPLEMENTA EL FUSE INTRC_IO
+
+#byte TRISB = 0x86
+#byte PORTB = 0x06
+
+#define reset PORTB, 0
+
+
+
+void initPins(){
+   bit_set(TRISB, 0);
+   bit_clear(TRISB, 1);
+   bit_clear(TRISB, 2);
+   bit_clear(TRISB, 3);
+   bit_clear(TRISB, 4);
+   
+   bit_clear(PORTB, 1);
+   bit_clear(PORTB, 2);
+   bit_clear(PORTB, 3);
+   bit_clear(PORTB, 4);
+}
+
+void main()
+{
+   initPins();
+   while(TRUE)
+   {
+      bit_set(PORTB, 1);
+      delay_ms(500);
+      bit_clear(PORTB, 1);
+      delay_ms(500);
+   }
+}

@@ -1,0 +1,49 @@
+#include <display-7.h>
+#define RESET PORTB, 0
+#define LED1 PORTB, 1
+#define LED2 PORTB, 2
+#define LED3 PORTB, 3
+#define LED4 PORTB, 4
+#define LED5 PORTB, 5
+#define LED6 PORTB, 6
+#define LED7 PORTB, 7
+
+void initPins() {
+	bit_set(TRISB, 0);
+	bit_clear(TRISB, 1);
+	bit_clear(TRISB, 2);
+	bit_clear(TRISB, 3);
+	bit_clear(TRISB, 4);
+	bit_clear(TRISB, 5);
+	bit_clear(TRISB, 6);
+	bit_clear(TRISB, 7);
+
+	bit_clear(LED1);
+	bit_clear(LED2);
+	bit_clear(LED3);
+	bit_clear(LED4);
+	bit_clear(LED5);
+	bit_clear(LED6);
+	bit_clear(LED7);
+}
+void main()
+{
+	initPins();
+	while(TRUE)
+	{
+		bit_set(LED1);
+		delay_ms(100);
+		bit_set(LED2);
+		delay_ms(100);
+		bit_set(LED3);
+		delay_ms(100);
+		bit_set(LED4);
+		delay_ms(100);
+		bit_set(LED5);
+		delay_ms(100);
+		bit_set(LED6);
+		delay_ms(100);
+		bit_set(LED7);
+		delay_ms(100);
+	}
+}

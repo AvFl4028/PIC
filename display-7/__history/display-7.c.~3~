@@ -1,0 +1,51 @@
+#include <display-7.h>
+#include <numeros.h>
+
+#define RESET PORTB, 0
+
+void initPins() {
+   bit_set(TRISB, 0);
+   bit_clear(TRISB, 1);
+   bit_clear(TRISB, 2);
+   bit_clear(TRISB, 3);
+   bit_clear(TRISB, 4);
+   bit_clear(TRISB, 5);
+   bit_clear(TRISB, 6);
+   bit_clear(TRISB, 7);
+
+   bit_clear(LED1);
+   bit_clear(LED2);
+   bit_clear(LED3);
+   bit_clear(LED4);
+   bit_clear(LED5);
+   bit_clear(LED6);
+   bit_clear(LED7);
+}
+
+void main()
+{
+   initPins();
+   while(TRUE)
+   {
+      cero();
+      delay_ms(100);
+      uno();
+      delay_ms(100);
+      dos();
+      delay_ms(100);
+      tres();
+      delay_ms(100);
+      cuatro();
+      delay_ms(100);
+      cinco();
+      delay_ms(100);
+      seis();
+      delay_ms(100);
+      siete();
+      delay_ms(100);
+      ocho();
+      delay_ms(100);
+      nueve();
+      delay_ms(100);
+   }
+}

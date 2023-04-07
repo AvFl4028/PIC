@@ -1,0 +1,55 @@
+004-005 @READ_PROGRAM_MEMORY8.P1
+006     PORTB
+009-00A @READ_PROGRAM_MEMORY8.P1
+00C     @SCRATCH
+00D     @SCRATCH
+00D     _RETURN_
+00E     @SCRATCH
+00F     @SCRATCH
+010.0   cambio_bool
+011     MAIN.i
+012     @delay_ms1.P1
+012     contador.i
+012     MAIN.@SCRATCH1
+086     TRISB
+
+ROM Allocation:
+000004  initPins
+000012  contador
+000095  @delay_ms1
+0000A8  MAIN
+0000A8  @cinit1
+0000AB  @cinit2
+
+Project Directory:
+    C:\Users\aviel\OneDrive\Documentos\PIC\placa de prueba\
+
+Project Files:
+    placa de prueba.c                                       [06-abr.-23 15:31  CRC=B36E4BC8]
+    placa de prueba.h                                       [06-abr.-23 15:02  CRC=00000000]
+    ..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F84A.h [18-abr.-14 16:56  CRC=A4928C19]
+
+Source signature=FC9363FA
+
+Units:
+    placa de prueba (main)
+
+Compiler Settings:
+    Processor:      PIC16F84A
+    Pointer Size:   8
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+    Compile Mode:       CCS5
+
+Output Files:
+    XREF file:   placa de prueba.xsym
+    Errors:      placa de prueba.err
+    Ext Symbols: placa de prueba.esym
+    INHX8:       placa de prueba.hex
+    Symbols:     placa de prueba.sym
+    List:        placa de prueba.lst
+    Debug/COFF:  placa de prueba.cof
+    Project:     placa de prueba.ccspjt
+    Call Tree:   placa de prueba.tre
+    Statistics:  placa de prueba.STA

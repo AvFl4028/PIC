@@ -1,0 +1,57 @@
+#include <main.h>
+
+#byte TRISA = 0x85
+#byte PORTA = 0x05
+
+#byte TRISB = 0x86
+#byte PORTB = 0x06
+
+int i;
+
+void initpins(){
+   bit_clear(TRISA, 0);
+   bit_clear(PORTA, 0);
+
+   bit_clear(TRISB, 0);
+   bit_clear(PORTB, 0);
+   
+   bit_clear(TRISB, 1);
+   bit_clear(PORTB, 1);
+   
+   bit_clear(TRISB, 2);
+   bit_clear(PORTB, 2);
+   
+   bit_clear(TRISB, 3);
+   bit_clear(PORTB, 3);
+   
+   bit_set(TRISB, 4);
+   bit_clear(PORTB, 4);
+   
+   bit_set(TRISB, 5);
+   bit_clear(PORTB, 5);
+   
+   bit_set(TRISB, 6);
+   bit_clear(PORTB, 6);
+   
+   bit_set(TRISB, 7);
+   bit_clear(PORTB, 7);
+}
+
+void main()
+{
+   initpins();
+   while(TRUE)
+   {
+      for(i = 0; i < 4; i++){
+         bit_set(PORTB, i);
+         if(bit_test(PORTB, 4) == 1){
+            bit_set(PORTA, 0);
+         }else{
+         bit_clear(PORTA, 0);
+         }
+         delay_ms(10);
+         bit_clear(PORTB, i);
+      }
+   }
+
+}

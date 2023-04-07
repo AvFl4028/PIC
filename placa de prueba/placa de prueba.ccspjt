@@ -1,0 +1,40 @@
+[PROJECT]
+Target=placa de prueba.hex
+Processor_Text=PIC16F84A
+CCSVerions=5.025
+Compiler=PCM
+CCSVersion=5.025
+[Target Data]
+FileList=placa de prueba.c
+[Directories]
+Include=
+[C:\Users\aviel\OneDrive\Documentos\PIC\placa de prueba\placa de prueba]
+Type=4
+[mru-list]
+1=placa de prueba.c
+
+[ProjectLog]
+Days=1
+D1=06-04-2023
+D1_L=8
+D1_L1=[54155]Project Opened.
+D1_L2=[54167]Started Editing.
+D1_L3=[55673]Stopped Editing.
+D1_L4=[55739]Started Editing.
+D1_L5=[56198]Stopped Editing.
+D1_L6=[56311]Started Editing.
+D1_L7=[56617]Stopped Editing.
+TotalEdit=23
+TotalDebug=0
+D1_E=23
+D1_D=0
+D1_L8=[72031]Project Closed.
+
+[Opened Files]
+1=placa de prueba.c
+2=
+[placa de prueba.c]
+Type=4
+[Units]
+Count=1
+1=placa de prueba (main)

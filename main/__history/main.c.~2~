@@ -1,0 +1,18 @@
+#include <main.h>
+
+#byte TRISB = 0x86
+#byte PORTB = 0x06
+
+void main()
+{
+   bit_clear(TRISB, 0);
+   bit_clear(PORTB, 0);
+   while(TRUE)
+   {
+      bit_set(PORTB, 0);
+      delay_ms(100);
+      bit_clear(PORTB, 0);
+      delay_ms(100);
+   }
+
+}

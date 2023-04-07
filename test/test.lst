@@ -1,0 +1,140 @@
+CCS PCM C Compiler, Version 5.025, 54977               01-abr.-23 15:52
+
+               Filename:   C:\Users\aviel\OneDrive\Documentos\test.lst
+
+               ROM used:   69 words (3%)
+                           Largest free fragment is 1979
+               RAM used:   6 (3%) at main() level
+                           6 (3%) worst case
+               Stack used: 1 locations
+               Stack size: 8
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   019
+0003:  NOP
+.................... #INCLUDE <16f628a.h>   // Define el PIC16f628 
+.................... //////////// Standard Header file for the PIC16F628A device //////////////// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996, 2013 Custom Computer Services          //// 
+.................... //// This source code may only be used by licensed users of the CCS C  //// 
+.................... //// compiler.  This source code may only be distributed to other      //// 
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction //// 
+.................... //// or distribution is permitted without written permission.          //// 
+.................... //// Derivative programs created using this software in object code    //// 
+.................... //// form are not restricted in any way.                               //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... #device PIC16F628A 
+....................  
+.................... #list 
+....................  
+.................... #FUSES NOWDT      // Es un fuse que resetea el pic si este se cuelga. 
+.................... #FUSES NOPROTECT  // Permite o bloque lectura del pic con un  programador 
+.................... #FUSES NOLVP      // Anula pin de programacion RB4 y lo deja como I/O 
+.................... #FUSES NOMCLR     // NOMCLR = PIN RA5 Input. MCLR=PIN RA5 como reset    
+.................... // ************************FUSES DEL RELOJ ************************************ 
+.................... //************************ PARA USAR EL OSCILADOR INTERNO DEL PIC ************* 
+.................... #FUSES INTRC_IO            // HABILITA el OSCILADOR INTERNO  
+.................... #USE DELAY(clock = 4000000, INTERNAL) // COMPLEMENTA EL FUSE INTRC_IO 
+0004:  MOVLW  21
+0005:  MOVWF  04
+0006:  BCF    03.7
+0007:  MOVF   00,W
+0008:  BTFSC  03.2
+0009:  GOTO   018
+000A:  MOVLW  01
+000B:  MOVWF  78
+000C:  CLRF   77
+000D:  DECFSZ 77,F
+000E:  GOTO   00D
+000F:  DECFSZ 78,F
+0010:  GOTO   00C
+0011:  MOVLW  4A
+0012:  MOVWF  77
+0013:  DECFSZ 77,F
+0014:  GOTO   013
+0015:  GOTO   016
+0016:  DECFSZ 00,F
+0017:  GOTO   00A
+0018:  RETURN
+.................... //------------------- SETEO DE PUERTOS DEL PIC -------------------------------- 
+.................... # USE fast_io(A)           // SET RAPIDO DE PUERTO A TRABAJA CON SET_TRIS_A(FF) 
+.................... # USE fast_io(B)           // SET RAPIDO DE PUERTO B TRABAJA CON SET_TRIS_B(0B) 
+.................... //**************** PROGRAMA PRINCIPAL ***************************************** 
+.................... void main() 
+0019:  MOVF   03,W
+001A:  ANDLW  1F
+001B:  MOVWF  03
+001C:  BSF    03.5
+001D:  BSF    0E.3
+001E:  MOVLW  07
+001F:  BCF    03.5
+0020:  MOVWF  1F
+0021:  BCF    03.7
+....................    { 
+....................    output_A(0);               // ARRANCA LIMPIO TODO EL PUERTO A 
+0022:  CLRF   05
+....................    SET_TRIS_A(0b00000001);    // Solo el PIN A0 se configura como entrada 
+0023:  MOVLW  01
+0024:  BSF    03.5
+0025:  MOVWF  05
+....................    output_B(0);               // ARRANCA LIMPIO TODO EL PUERTO B 
+0026:  BCF    03.5
+0027:  CLRF   06
+....................    SET_TRIS_B(0X00);          // Todo el puerto B se configura como Salida 
+0028:  MOVLW  00
+0029:  BSF    03.5
+002A:  MOVWF  06
+....................   
+....................    while(TRUE) 
+....................    { 
+.................... //************Mientras el pulsador no se presiona *****************************    
+....................    if (input (PIN_A0)==1)          // SI EL PULSADOR NO SE PRESIONA 
+002B:  BCF    03.5
+002C:  BTFSS  05.0
+002D:  GOTO   034
+....................    { 
+....................    Output_toggle (PIN_B1);         // Parpadea el LED 2 
+002E:  MOVLW  02
+002F:  XORWF  06,F
+....................    Delay_ms(100);                  // Retardo para ver el parpadeo del led 2 
+0030:  MOVLW  64
+0031:  MOVWF  21
+0032:  CALL   004
+....................    } 
+0033:  GOTO   043
+.................... //*********** Se detecta la pulsacion del pulsador de RA0 ********************* 
+....................    else 
+....................    if (input (PIN_A0)==0)          // SI EL PULSADOR DE RA0 FUE PRESIONADO 
+0034:  BTFSC  05.0
+0035:  GOTO   043
+....................    { 
+....................    DELAY_MS(100);                  // Retardo Antirrebote 
+0036:  MOVLW  64
+0037:  MOVWF  21
+0038:  CALL   004
+....................    while (input (PIN_A0)==0)       // Mientras esta presionado 
+0039:  BTFSC  05.0
+003A:  GOTO   041
+....................    { 
+....................    Output_toggle (PIN_B1);         // El led 2 sigue Parpadeando independiente 
+003B:  MOVLW  02
+003C:  XORWF  06,F
+....................    Delay_ms(100);                  // Retardo para ver el parpadeo del led 2   
+003D:  MOVLW  64
+003E:  MOVWF  21
+003F:  CALL   004
+0040:  GOTO   039
+....................    }                               // Cuando se suelta el pulsador 
+....................    Output_toggle (PIN_B0);         // RECIEN Se enciende o apaga LED 1  
+0041:  MOVLW  01
+0042:  XORWF  06,F
+....................    } 
+0043:  GOTO   02C
+....................    } 
+....................    } 
+0044:  SLEEP
+
+Configuration Fuses:
+   Word  1: 3F50   NOWDT PUT INTRC_IO NOMCLR BROWNOUT NOLVP NOCPD NOPROTECT

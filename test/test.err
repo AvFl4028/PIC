@@ -1,0 +1,16 @@
+*** Error 18 "test.c" Line 1(9,69): File can not be opened
+    Not in "C:\Program Files (x86)\PICC\Devices\pic16f628a.h"
+    Not in "C:\Program Files (x86)\PICC\Drivers\pic16f628a.h"
+    Not in local "pic16f628a.h"
+    Not in local "C:\Users\aviel\OneDrive\Documentos\pic16f628a.h"
+    Not in last "C:\Program Files (x86)\PICC\Devices\pic16f628a.h"
+    Not in project "C:\Users\aviel\OneDrive\Documentos\pic16f628a.h"
+*** Error 128 "test.c" Line 3(9,15): A #DEVICE required before this line
+*** Error 12 "test.c" Line 6(4,14): Undefined identifier   OSCCONbits
+*** Error 12 "test.c" Line 7(4,13): Undefined identifier   TRISBbits
+*** Error 12 "test.c" Line 10(7,16): Undefined identifier   PORTBbits
+*** Error 102 "test.c" Line 11(18,21): Expect comma
+*** Error 12 "test.c" Line 12(7,16): Undefined identifier   PORTBbits
+*** Error 102 "test.c" Line 13(18,21): Expect comma
+      8 Errors,  0 Warnings.
+Build Failed.

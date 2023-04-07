@@ -1,0 +1,133 @@
+CCS PCM C Compiler, Version 5.025, 54977               01-abr.-23 16:19
+
+               Filename:   C:\Users\aviel\OneDrive\Documentos\prueba.lst
+
+               ROM used:   67 words (3%)
+                           Largest free fragment is 1981
+               RAM used:   6 (3%) at main() level
+                           7 (3%) worst case
+               Stack used: 1 locations
+               Stack size: 8
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   023
+0003:  NOP
+.................... #INCLUDE <16f628a.h>   // Define el PIC16f628 
+.................... //////////// Standard Header file for the PIC16F628A device //////////////// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996, 2013 Custom Computer Services          //// 
+.................... //// This source code may only be used by licensed users of the CCS C  //// 
+.................... //// compiler.  This source code may only be distributed to other      //// 
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction //// 
+.................... //// or distribution is permitted without written permission.          //// 
+.................... //// Derivative programs created using this software in object code    //// 
+.................... //// form are not restricted in any way.                               //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... #device PIC16F628A 
+....................  
+.................... #list 
+....................  
+.................... #FUSES NOWDT      // Es un fuse que resetea el pic si este se cuelga. 
+.................... #FUSES NOPROTECT  // Permite o bloque lectura del pic con un  programador 
+.................... #FUSES NOLVP      // Anula pin de programacion RB4 y lo deja como I/O 
+.................... #FUSES NOMCLR     // NOMCLR = PIN RA5 Input. MCLR=PIN RA5 como reset    
+.................... // ************************FUSES DEL RELOJ ************************************ 
+.................... //************************ PARA USAR EL OSCILADOR INTERNO DEL PIC ************* 
+.................... #FUSES INTRC_IO            // HABILITA el OSCILADOR INTERNO  
+.................... #USE DELAY(clock = 4000000, INTERNAL) // COMPLEMENTA EL FUSE INTRC_IO 
+*
+000E:  MOVLW  22
+000F:  MOVWF  04
+0010:  BCF    03.7
+0011:  MOVF   00,W
+0012:  BTFSC  03.2
+0013:  GOTO   022
+0014:  MOVLW  01
+0015:  MOVWF  78
+0016:  CLRF   77
+0017:  DECFSZ 77,F
+0018:  GOTO   017
+0019:  DECFSZ 78,F
+001A:  GOTO   016
+001B:  MOVLW  4A
+001C:  MOVWF  77
+001D:  DECFSZ 77,F
+001E:  GOTO   01D
+001F:  GOTO   020
+0020:  DECFSZ 00,F
+0021:  GOTO   014
+0022:  RETURN
+....................  
+.................... #byte TRISB = 0x86 
+.................... #byte PORTB = 0x06 
+....................  
+.................... void initPins(){ 
+....................    bit_set(TRISB, 2); 
+*
+0004:  BSF    03.5
+0005:  BSF    06.2
+....................    bit_clear(TRISB,0); 
+0006:  BCF    06.0
+....................    bit_clear(PORTB, 0); 
+0007:  BCF    03.5
+0008:  BCF    06.0
+....................    bit_clear(TRISB,1); 
+0009:  BSF    03.5
+000A:  BCF    06.1
+....................    bit_clear(PORTB, 1); 
+000B:  BCF    03.5
+000C:  BCF    06.1
+000D:  GOTO   02D (RETURN)
+.................... } 
+....................  
+.................... void main(){ 
+*
+0023:  MOVF   03,W
+0024:  ANDLW  1F
+0025:  MOVWF  03
+0026:  BSF    03.5
+0027:  BSF    0E.3
+0028:  MOVLW  07
+0029:  BCF    03.5
+002A:  MOVWF  1F
+002B:  BCF    03.7
+....................    initPins(); 
+002C:  GOTO   004
+....................    while(true){ 
+....................       if(bit_test(PORTB, 2) == 1){ 
+002D:  BTFSS  06.2
+002E:  GOTO   041
+....................       bit_set(PORTB, 1); 
+002F:  BSF    06.1
+....................       bit_clear(PORTB, 0); 
+0030:  BCF    06.0
+....................       delay_ms(500); 
+0031:  MOVLW  02
+0032:  MOVWF  21
+0033:  MOVLW  FA
+0034:  MOVWF  22
+0035:  CALL   00E
+0036:  DECFSZ 21,F
+0037:  GOTO   033
+....................       bit_clear(PORTB, 1); 
+0038:  BCF    06.1
+....................       bit_set(PORTB, 0); 
+0039:  BSF    06.0
+....................       delay_ms(500); 
+003A:  MOVLW  02
+003B:  MOVWF  21
+003C:  MOVLW  FA
+003D:  MOVWF  22
+003E:  CALL   00E
+003F:  DECFSZ 21,F
+0040:  GOTO   03C
+....................       } 
+0041:  GOTO   02D
+....................    } 
+.................... } 
+0042:  SLEEP
+
+Configuration Fuses:
+   Word  1: 3F50   NOWDT PUT INTRC_IO NOMCLR BROWNOUT NOLVP NOCPD NOPROTECT

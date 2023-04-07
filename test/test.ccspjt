@@ -1,0 +1,62 @@
+[PROJECT]
+Target=test.hex
+Processor_Text=PIC16F628A
+CCSVerions=5.025
+Compiler=PCM
+CCSVersion=5.025
+[Target Data]
+FileList=test.c
+[Directories]
+Include=
+[C:\Users\aviel\OneDrive\Documentos\test]
+Type=4
+[mru-list]
+1=test.c
+
+[ProjectLog]
+Days=2
+D1=30-03-2023
+D1_L=10
+D1_L1=[714]Project Opened.
+D1_L2=[746]Started Editing.
+D1_L3=[1679]Stopped Editing.
+D1_L4=[1806]Started Editing.
+D1_L5=[1974]Stopped Editing.
+TotalEdit=40
+TotalDebug=0
+D1_E=30
+D1_D=0
+D1_L6=[1974]Project Closed.
+D1_L7=[67435]Project Opened.
+D1_L8=[67698]Started Editing.
+D1_L9=[67965]Stopped Editing.
+D1_L10=[67965]Project Closed.
+D2=01-04-2023
+D2_L=15
+D2_L1=[44670]Project Opened.
+D2_L2=[44685]Started Editing.
+D2_L3=[45001]Stopped Editing.
+D2_L4=[45658]Started Editing.
+D2_L5=[46292]Stopped Editing.
+D2_L6=[46513]Started Editing.
+D2_L7=[46995]Stopped Editing.
+D2_L8=[47062]Started Editing.
+D2_L9=[53966]Stopped Editing.
+D2_L10=[54029]Started Editing.
+D2_L11=[57117]Project Closed.
+D2_L12=[57141]Project Opened.
+D2_L13=[57146]Started Editing.
+D2_L14=[57746]Stopped Editing.
+D2_E=10
+D2_D=0
+D2_L15=[57746]Project Closed.
+
+[Opened Files]
+1=test.c
+2=
+3=
+[test.c]
+Type=4
+[Units]
+Count=1
+1=test (main)

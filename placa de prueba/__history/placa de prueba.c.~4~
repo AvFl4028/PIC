@@ -1,0 +1,36 @@
+#include <placa de prueba.h>
+
+#byte TRISB = 0x86
+#byte PORTB = 0x06
+
+#define CAMBIO PORTB, 0
+
+#define led1 PORTB, 1
+#define led2 PORTB, 2
+#define led3 PORTB, 3
+#define led4 PORTB, 4
+
+#define CAMBIO_BTN PORTB, 5
+
+void main()
+{
+   bit_clear(TRISB, 0);
+   bit_clear(TRISB, 1);
+   bit_clear(TRISB, 2);
+   bit_clear(TRISB, 3);
+   bit_clear(TRISB, 4);
+   
+   bit_set(TRISB, 5);
+   
+   bit_clear(led1);
+   bit_clear(led2);
+   bit_clear(led3);
+   bit_clear(led4);
+   
+   bit_clear(CAMBIO);
+   while(TRUE)
+   {
+      bit_set(led1);
+   }
+
+}

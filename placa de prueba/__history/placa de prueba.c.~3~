@@ -1,0 +1,17 @@
+#include <placa de prueba.h>
+
+#byte TRISB = 0x86
+#byte PORTB = 0x06
+
+#define led1 PORTB, 1
+
+void main()
+{
+   bit_clear(TRISB, 1);
+   bit_clear(led1);
+   while(TRUE)
+   {
+      bit_set(led1);
+   }
+
+}
